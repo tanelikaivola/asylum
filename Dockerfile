@@ -42,6 +42,7 @@ RUN awk '/^\s*[^#]/' requirements.apt | xargs -r -- sudo apt-get install --no-in
 RUN virtualenv -p `which python3.4` ../asylum-venv
 COPY project/requirements /opt/asylum/requirements/
 RUN . ../asylum-venv/bin/activate && pip install -r requirements/local.txt
+RUN . ../asylum-venv/bin/activate && pip install -r requirements/test.txt
 
 # Configure application
 USER root

@@ -20,7 +20,8 @@ if [ "$#" -eq 0 ]; then
   npm run build
   npm run watch &
   NPM=$!
-  ./manage.py runserver 0.0.0.0:8000
+  DJANGO_SETTINGS_MODULE=config.settings.local uwsgi --master --http :8000 --wsgi-file config/wsgi.py
+#  ./manage.py runserver 0.0.0.0:8000
   maildump -p ~/maildump.pid --stop
 else
   "$@"
